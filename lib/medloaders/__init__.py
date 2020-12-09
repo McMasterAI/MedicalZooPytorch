@@ -11,6 +11,7 @@ from .iseg2019 import MRIDatasetISEG2019
 from .ixi_t1_t2 import IXIMRIdataset
 from .miccai_2019_pathology import MICCAI2019_gleason_pathology
 from .mrbrains2018 import MRIDatasetMRBRAINS2018
+from .test_dataset import TestDataset
 
 
 def generate_datasets(args, path='.././datasets'):
@@ -22,8 +23,15 @@ def generate_datasets(args, path='.././datasets'):
     split_percent = args.split
 
     if args.dataset_name == "test_dataset":
-        pass
+        split = (0.8, 0.2)
+        total_data = #
+        split_idx = int(split[0] * total_data)
+        train_loader = TestDataset(args, 'train', dataset_path=path, classes=args.classes, crop_dim=args.dim,
+                                       split_idx=split_idx, samples=samples_train, load=args.loadData)
 
+        val_loader = TestDataset(args, 'val', dataset_path=path, classes=args.classes, crop_dim=args.dim,
+                                     split_idx=split_idx,
+                                     samples=samples_val, load=args.loadData)
     elif args.dataset_name == "iseg2017":
         total_data = 10
         split_idx = int(split_percent * total_data)
